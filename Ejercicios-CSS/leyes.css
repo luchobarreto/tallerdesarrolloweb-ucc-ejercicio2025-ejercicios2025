@@ -1,0 +1,7 @@
+.titulo {
+    list-style-type: upper-roman;
+}
+
+.subitems {
+    list-style-type: lower-alpha;
+}
