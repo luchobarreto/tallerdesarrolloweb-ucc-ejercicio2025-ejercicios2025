@@ -27,3 +27,8 @@ div {
 h1, h2, p {
     text-shadow: rgba(255, 255, 255, 0.66) 0 0 4px;
 }
+
+.contenedor {
+    position: fixed;
+    z-index: 1;
+}
