@@ -5,7 +5,6 @@
     <title>Conversor de Unidades</title>
     <link href="https://fonts.googleapis.com/css?family=Inknut+Antiqua" rel="stylesheet">
     <link href="miEstilo.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="misFunciones.js"></script>
 </head>
 <body class="body-num">
 
@@ -13,18 +12,19 @@
     <h1>Conversor de Unidades</h1>
     <form>
         <p>
-            <label for="metro"> Metro</label> = <input id="metro" type="text" name="unid_metro">
+            <label for="metro"> Metro</label> = <input id="metro" type="number" name="unid_metro" onchange="cambiarUnidades(this.value, this.name)">
         </p>
         <p>
-            <label for="pulgada"> Pulgada</label> = <input id="pulgada" type="text" name="unid_pulgada">
+            <label for="pulgada"> Pulgada</label> = <input id="pulgada" type="number" name="unid_pulgada" onchange="cambiarUnidades(this.value, this.name)">
         </p>
         <p>
-            <label for="pie"> Pie </label> = <input id="pie" type="text" name="unid_pie">
+            <label for="pie"> Pie </label> = <input id="pie" type="number" name="unid_pie" onchange="cambiarUnidades(this.value, this.name)">
         </p>
         <p>
-            <label for="yarda"> Yarda</label> = <input id="yarda" type="text" name="unid_yarda">
+            <label for="yarda"> Yarda</label> = <input id="yarda" type="number" name="unid_yarda" onchange="cambiarUnidades(this.value, this.name)">
         </p>
     </form>
 </div>
+<script src="./conversor_unidades.js"></script>
 </body>
 </html>
