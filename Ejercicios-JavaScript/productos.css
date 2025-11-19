@@ -15,6 +15,13 @@ body {
                          'footer footer footer footer';
 }
 
+.cart-template-areas {
+    grid-template-areas: 'header header header header'
+                         'links links links links'
+                         'main main main main'
+                         'footer footer footer footer';
+}
+
 button {
     width: 100%;
     background: #000;
@@ -24,6 +31,31 @@ button {
     color: #fff;
     cursor: pointer;
     padding: 8px;
+    transition: ease-in 0.2s;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-white, button:hover {
+    background: #fff;
+    border: 1px solid #000;
+    color: #000;
+}
+
+.btn-white:hover {
+    background: #000;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.mt-6 {
+    margin-top: 6px;
 }
 
 header {
@@ -59,6 +91,10 @@ header {
     text-decoration: underline;
 }
 
+.links-container .active-link {
+    text-decoration: underline !important;
+}
+
 aside {
     grid-area: aside;
     margin-left: 12px;
@@ -77,7 +113,7 @@ main {
     grid-area: main;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: repeat(2, 1fr);
-    margin: 0 12px;
+    margin: 0 12px 10px;
     gap: 10px;
 }
 
@@ -102,6 +138,12 @@ dialog h2, dialog h3, dialog p {
 }
 
 .product-container > p {
+    font-size: 18px;
+    margin-top: 2px;
+    font-weight: bold;
+}
+
+.product-container > p, .product-container > span {
     text-align: center;
     margin-bottom: 8px;
 }
@@ -112,13 +154,17 @@ dialog h2, dialog h3, dialog p {
     object-fit: contain;
 }
 
-.product-container > button {
-    margin-top: auto;
-}
-
 footer {
     grid-area: footer;
     background: #000;
     color: #fff;
     padding: 20px;
+}
+
+.empty-cart-message {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    grid-column: 2;
+    grid-row: 1;
 }
