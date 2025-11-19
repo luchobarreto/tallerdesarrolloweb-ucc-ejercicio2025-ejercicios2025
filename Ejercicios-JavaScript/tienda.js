@@ -1,4 +1,4 @@
-const productos = [
+export const productos = [
   {
     nombre: "Cabezal Sparring",
     description: "Cabezal de Sparring.",
