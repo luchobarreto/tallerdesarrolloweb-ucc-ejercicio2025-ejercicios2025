@@ -8,6 +8,7 @@ const cleanCartButton = document.getElementById('clean-cart');
 const searchForm = document.getElementById('search-form');
 const clearFiltersButton = document.getElementById('clear-filters');
 const brandSelect = document.getElementById('brand-select');
+const cartCounter = document.getElementById('cart-counter');
 
 const buildImageSource = (imageName) => `./images/${imageName}`;
 const buildDialog = () => `<dialog id="modal"></dialog>`;
@@ -23,6 +24,12 @@ const buildProductHTML = (product) => `
 <div class="product-container">
     <img src="${buildImageSource(product.image)}" alt="">
     <p>${product.name}</p>
+    <span>
+        ${new Intl.NumberFormat("es-AR", {
+            style: "currency",
+            currency: "ARS"
+        }).format(product.price)}
+    </span>
     <button onclick="showModal('${product.name}', '${product.description}')" class="btn-white mt-auto">
         Ver Detalle del Producto
     </button>
@@ -42,6 +49,12 @@ const buildCartProductHTML = (productCart) => `
     <div class="product-container">
         <img src="${buildImageSource(productCart.image)}" alt="">
         <p>${productCart.name}</p>
+        <span>
+            ${new Intl.NumberFormat("es-AR", {
+                style: "currency",
+                currency: "ARS"
+            }).format(productCart.price)}
+        </span>
         <span>Unidades: ${productCart.units}</span>
         <button onclick="addToCart('${productCart.id}')" class="mt-auto">
             Añadir una unidad
@@ -103,22 +116,27 @@ const renderProducts = () => {
 }
 
 const renderCart = () => {
-    if(cartWrapper) {
-        let cartHtml = "";
-        const rawLocalStorageCart = localStorage.getItem(LOCAL_STORAGE_CART_KEY);
-        if(!rawLocalStorageCart) {
-            cartHtml = buildEmptyCartMessageHTMl();
+    let productsAmount = 0;
+    let cartHtml = "";
+    const rawLocalStorageCart = localStorage.getItem(LOCAL_STORAGE_CART_KEY);
+    if(!rawLocalStorageCart) {
+        cartHtml = buildEmptyCartMessageHTMl();
+    } else {
+        const currentCart = JSON.parse(rawLocalStorageCart);
+        if(currentCart.length > 0) {
+            currentCart.forEach(productCart => {
+                productsAmount++;
+                cartHtml += buildCartProductHTML(productCart);
+            });
         } else {
-            const currentCart = JSON.parse(rawLocalStorageCart);
-            if(currentCart.length > 0) {
-                currentCart.forEach(productCart => {
-                    cartHtml += buildCartProductHTML(productCart);
-                });
-            } else {
-                cartHtml = buildEmptyCartMessageHTMl();
-            }
+            cartHtml = buildEmptyCartMessageHTMl();
         }
+    }
+    if(cartWrapper) {
         cartWrapper.innerHTML = cartHtml;
+    }
+    if(cartCounter) {
+        cartCounter.innerHTML = String(productsAmount);
     }
 }
 
