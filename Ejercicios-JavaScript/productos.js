@@ -10,6 +10,7 @@ const clearFiltersButton = document.getElementById('clear-filters');
 const brandSelect = document.getElementById('brand-select');
 const cartCounter = document.getElementById('cart-counter');
 const checkoutContainer = document.getElementById('checkout-container');
+const sortSelect = document.getElementById('sort-select');
 
 const buildImageSource = (imageName) => `./images/${imageName}`;
 const buildDialog = () => `<dialog id="modal"></dialog>`;
@@ -80,6 +81,7 @@ let protectorsChecked = false;
 let trainingChecked = false;
 let doboksChecked = false;
 let selectedBrand = "";
+let currentSort = "";
 
 const filterProducts = (searchQuery, minPrice, maxPrice, protectors, training, doboks, selectedBrand) => {
     return PRODUCTS.filter(product => {
@@ -101,6 +103,27 @@ const filterProducts = (searchQuery, minPrice, maxPrice, protectors, training, d
     });
 };
 
+const sortProducts = (productsArray, sortOption) => {
+    const arr = [...productsArray];
+    switch (sortOption) {
+        case 'price-asc':
+            arr.sort((a, b) => a.price - b.price);
+            break;
+        case 'price-desc':
+            arr.sort((a, b) => b.price - a.price);
+            break;
+        case 'name-asc':
+            arr.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+        case 'name-desc':
+            arr.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+        default:
+            break;
+    }
+    return arr;
+};
+
 const renderProducts = () => {
     if (productsWrapper) {
         const filteredProducts = filterProducts(
@@ -113,8 +136,10 @@ const renderProducts = () => {
             selectedBrand
         );
 
+        const finalProducts = currentSort ? sortProducts(filteredProducts, currentSort) : filteredProducts;
+
         let productsHtml = "";
-        filteredProducts.forEach(p => {
+        finalProducts.forEach(p => {
             productsHtml += buildProductHTML(p);
         });
         productsHtml += buildDialog();
@@ -257,8 +282,8 @@ const removeFromCart = (productIdString) => {
 
 if(cleanCartButton) {
     cleanCartButton.addEventListener('click', () => {
-       localStorage.setItem(LOCAL_STORAGE_CART_KEY, JSON.stringify([]));
-       renderCart();
+        localStorage.setItem(LOCAL_STORAGE_CART_KEY, JSON.stringify([]));
+        renderCart();
     });
 }
 
@@ -289,6 +314,7 @@ if (clearFiltersButton) {
         trainingChecked = false;
         doboksChecked = false;
         selectedBrand = "";
+        currentSort = "";
 
         document.getElementById('search-input').value = "";
         document.getElementById('min-price-input').value = "";
@@ -297,7 +323,15 @@ if (clearFiltersButton) {
         document.getElementById('training').checked = false;
         document.getElementById('doboks').checked = false;
         brandSelect.value = "";
+        if (sortSelect) sortSelect.value = "";
 
+        renderProducts();
+    });
+}
+
+if (sortSelect) {
+    sortSelect.addEventListener('change', (e) => {
+        currentSort = e.target.value;
         renderProducts();
     });
 }
