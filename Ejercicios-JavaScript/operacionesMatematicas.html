@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Operaciones Matemáticas</title>
-    <link href="https://fonts.googleapis.com/css?family=Inknut+Antiqua" rel="stylesheet">
-    <link href="miEstilo.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="misFunciones.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Inknut+Antiqua" rel="stylesheet" />
+    <link href="miEstilo.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="body-num">
-
 <div class="centrado div-conver">
     <h1>Operaciones Matemáticas</h1>
-    <form class="operacionesMat">
+    <form class="operacionesMat" onsubmit="return false;">
         <p>
-            <input id="nums1" type="text" name="sum_num1">
+            <input id="nums1" name="sum_num1" type="text" />
             +
-            <input id="nums2" type="text" name="sum_num2">
+            <input id="nums2" name="sum_num2" type="text" />
             =
-            <input id="totalS" type="text" name="sum_total" disabled>
+            <span id="totalS" class="total" aria-live="polite"></span>
         </p>
+
         <p>
-            <input id="numr1" type="text" name="res_num1">
+            <input id="numr1" name="res_num1" type="text" />
             -
-            <input id="numr2" type="text" name="res_num2">
+            <input id="numr2" name="res_num2" type="text" />
             =
-            <input id="totalR" type="text" name="res_total" disabled>
+            <span id="totalR" class="total" aria-live="polite"></span>
         </p>
+
         <p>
-            <input id="numm1" type="text" name="mul_num1">
+            <input id="numm1" name="mul_num1" type="text" />
             x
-            <input id="numm2" type="text" name="mul_num2">
+            <input id="numm2" name="mul_num2" type="text" />
             =
-            <input id="totalM" type="text" name="mul_total" disabled>
+            <span id="totalM" class="total" aria-live="polite"></span>
         </p>
+
         <p>
-            <input id="numd1" type="text" name="div_num1">
+            <input id="numd1" name="div_num1" type="text" />
             /
-            <input id="numd2" type="text" name="div_num2">
+            <input id="numd2" name="div_num2" type="text" />
             =
-            <input id="totalD" type="text" name="div_total" disabled>
+            <span id="totalD" class="total" aria-live="polite"></span>
         </p>
     </form>
-    <script src="./operaciones_matematicas.js"></script>
 </div>
+
+<script src="misFunciones.js"></script>
+<script src="operaciones_matematicas.js"></script>
 </body>
 </html>

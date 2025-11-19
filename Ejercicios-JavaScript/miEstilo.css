@@ -29,8 +29,30 @@ h1{
     max-width: 500px;
 }
 
+.operacionesMat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .operacionesMat input{
     max-width: 40px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-shadow: none;
+}
+
+.operacionesMat > p {
+    display: flex;
+}
+
+.operacionesMat > p > span {
+    width: 48px;
+    height: 21px;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 5px;
 }
 
 /*Formulario*/
