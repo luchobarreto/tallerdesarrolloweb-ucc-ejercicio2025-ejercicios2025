@@ -36,8 +36,8 @@ function cambiarUnidades(valor, nombre) {
             return;
     }
 
-    inputMetro.value = Number(metros.toFixed(6));
-    inputPulgada.value = Number((metros * ratioMetroPulgada).toFixed(6));
-    inputPie.value = Number((metros * ratioMetroPie).toFixed(6));
-    inputYarda.value = Number((metros * ratioMetroYarda).toFixed(6));
+    inputMetro.value = Number(metros.toFixed(2));
+    inputPulgada.value = Number((metros * ratioMetroPulgada).toFixed(2));
+    inputPie.value = Number((metros * ratioMetroPie).toFixed(2));
+    inputYarda.value = Number((metros * ratioMetroYarda).toFixed(2));
 }

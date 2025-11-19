@@ -43,6 +43,11 @@ h1{
     box-shadow: none;
 }
 
+.operacionesMat input, .operacionesMat b {
+    margin-right: 4px;
+    font-weight: normal;
+}
+
 .operacionesMat > p {
     display: flex;
 }
